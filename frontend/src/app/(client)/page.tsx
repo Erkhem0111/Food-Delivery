@@ -1,9 +1,6 @@
 "use client";
 
 import { Dispatch, SetStateAction, createContext, useState } from "react";
-import { CreateAccount } from "./_components/CreateAccount";
-import { CreateNewPassword } from "./_components/CreateNewPassword";
-import { Login } from "./_components/Login";
 
 type StepContextType = {
   step: number;
@@ -23,7 +20,7 @@ export type Data = {
   confirmPassword: string;
 };
 
-const FormPage = () => {
+const HomePage = () => {
   const [step, setStep] = useState(1);
   const [data, setData] = useState<Data>({
     email: "",
@@ -47,13 +44,13 @@ const FormPage = () => {
           className="absolute z-[-10] w-180 h-full object-center"
         /> */}
         <div className="flex items-center ml-48">
-          {step === 1 && <CreateAccount />}
-          {step === 2 && <CreateNewPassword />}
-          {step === 3 && <Login />}
+          {step === 1 && <></>}
+          {step === 2 && <></>}
+          {step === 3 && <></>}
         </div>
         <img src="/Frame.png" className="m-8 w-full h-[1024px] rounded-3xl" />
       </div>
     </StepContext.Provider>
   );
 };
-export default FormPage;
+export default HomePage;

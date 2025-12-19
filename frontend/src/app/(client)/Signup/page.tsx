@@ -23,7 +23,7 @@ const formSchema = z.object({
 
 type formSchemaType = z.infer<typeof formSchema>;
 
-export const CreateAccount = () => {
+const Signup = () => {
   const { data, handleNext, handleBack } = useContext(StepContext);
   const form = useForm<formSchemaType>({
     resolver: zodResolver(formSchema),
@@ -93,3 +93,4 @@ export const CreateAccount = () => {
     </div>
   );
 };
+export default Signup;

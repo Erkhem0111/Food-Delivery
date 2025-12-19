@@ -42,7 +42,7 @@ const formSchema = z
 
 type formSchemaType = z.infer<typeof formSchema>;
 
-export const CreateNewPassword = () => {
+const Password = () => {
   const { data, handleNext, handleBack } = useContext(StepContext);
   const form = useForm<formSchemaType>({
     resolver: zodResolver(formSchema),
@@ -134,3 +134,4 @@ export const CreateNewPassword = () => {
     </div>
   );
 };
+export default Password;
