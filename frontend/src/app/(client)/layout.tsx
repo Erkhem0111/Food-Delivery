@@ -1,4 +1,4 @@
-import { ClientHeader } from "../_components/ClientHeader";
+"use client";
 import { Header } from "../_components/Header";
 
 export default function RootLayout({
