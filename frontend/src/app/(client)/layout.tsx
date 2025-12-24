@@ -1,3 +1,4 @@
+import { ClientHeader } from "../_components/ClientHeader";
 import { Header } from "../_components/Header";
 
 export default function RootLayout({
@@ -5,5 +6,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <div>{children}</div>;
+  return (
+    <div>
+      <Header />
+      {children}
+    </div>
+  );
 }
