@@ -1,12 +1,7 @@
 "use client";
 
-import { Footer } from "../_components/Footer";
-import {
-  Appetizers,
-  FoodList,
-  Lunches,
-  Salads,
-} from "../_components/MovieList";
+import { Footer } from "./_components/Footer";
+import { Appetizers, FoodList, Lunches, Salads } from "./_components/Foodlist";
 
 const Home = () => {
   return (
@@ -17,20 +12,20 @@ const Home = () => {
         <h2 className="text-[30px] leading-6 text-white font-semibold mb-6">
           Appetizers
         </h2>
-        <FoodList food={Appetizers} />
+        <FoodList item={Appetizers} />
 
         <h2 className="text-[30px] leading-6 text-white font-semibold mt-12 mb-6">
           Salads
         </h2>
-        <FoodList food={Salads} />
+        <FoodList item={Salads} />
         <h2 className="text-[30px] leading-6 text-white font-semibold mt-12 mb-6">
           Lunch Favorites
         </h2>
-        <FoodList food={Lunches} />
+        <FoodList item={Lunches} />
         <h2 className="text-[30px] leading-6 text-white font-semibold mt-12 mb-6">
           Salads
         </h2>
-        <FoodList food={Salads} />
+        <FoodList item={Salads} />
       </div>
       <Footer />
     </div>

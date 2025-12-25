@@ -1,8 +1,10 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Plus } from "lucide-react";
+"use client";
 
-type FoodListProps = {
-  food: {
+import { Card, CardContent } from "@/components/ui/card";
+import { FoodCard } from "./FoodCard";
+
+export type FoodListProps = {
+  item: {
     name: string;
     price: string;
     description: string;
@@ -117,31 +119,28 @@ export const Lunches = [
   },
 ];
 
-export const FoodList = ({ food }: FoodListProps) => {
+export const FoodList = ({ item }: FoodListProps) => {
   return (
-    <div className="grid grid-cols-3 gap-6">
-      {food.map((item, index) => (
+    <div className="grid grid-cols-3 gap-16">
+      {item.map((item, index) => (
         <Card key={index} className="w-full relative">
           <CardContent>
             <div className="relative">
               <img
-                className="rounded-3xl w-full h-52 object-cover"
+                className="rounded-2xl w-full h-64 object-cover"
                 src={item.image}
-                alt={item.name}
               />
-              <div className="rounded-full bg-white w-11 h-11 text-[#EF4444] flex items-center justify-center absolute bottom-3 right-3 cursor-pointer">
-                <Plus />
-              </div>
+              <FoodCard key={index} />
             </div>
             <div className="flex justify-between pt-5">
-              <p className="text-[24px] leading-8 text-[#EF4444] font-semibold">
+              <p className="text-[28px] leading-8 text-[#EF4444] font-bold">
                 {item.name}
               </p>
-              <p className="text-[18px] leading-7 text-[#09090B] font-semibold">
+              <p className="text-[20px] leading-7 text-[#09090B] font-bold">
                 {item.price}
               </p>
             </div>
-            <p className="text-[14px] leading-5 text-[#09090B] font-medium font-sans pt-2">
+            <p className="text-[16px] leading-5 text-[#09090B] font-medium font-sans pt-2">
               {item.description}
             </p>
           </CardContent>

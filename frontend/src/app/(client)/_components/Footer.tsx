@@ -1,5 +1,5 @@
+import { Logo } from "@/app/(client)/_components/Logo";
 import { Facebook, Instagram } from "lucide-react";
-import { Logo } from "./Logo";
 
 export const Footer = () => {
   return (
