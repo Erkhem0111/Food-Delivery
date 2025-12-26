@@ -4,9 +4,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { FoodCard } from "./FoodCard";
 
 export type FoodListProps = {
-  item: {
+  food: {
     name: string;
-    price: string;
+    price: number;
     description: string;
     image: string;
   }[];
@@ -15,42 +15,42 @@ export type FoodListProps = {
 export const Appetizers = [
   {
     name: "Finger food",
-    price: "$12.99",
+    price: "12.99",
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
   },
   {
     name: "Finger food",
-    price: "$12.99",
+    price: "12.99",
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
   },
   {
     name: "Finger food",
-    price: "$12.99",
+    price: "12.99",
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
   },
   {
     name: "Finger food",
-    price: "$12.99",
+    price: "12.99",
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
   },
   {
     name: "Finger food",
-    price: "$12.99",
+    price: "12.99",
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
   },
   {
     name: "Finger food",
-    price: "$12.99",
+    price: "12.99",
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
@@ -60,21 +60,21 @@ export const Appetizers = [
 export const Salads = [
   {
     name: "Fruit Salad",
-    price: "$10.99",
+    price: "10.99",
     description:
       "A refreshing mix of seasonal fruits, perfect for a light snack.",
     image: "/Food.png",
   },
   {
     name: "Fruit Salad",
-    price: "$10.99",
+    price: "10.99",
     description:
       "A refreshing mix of seasonal fruits, perfect for a light snack.",
     image: "/Food.png",
   },
   {
     name: "Fruit Salad",
-    price: "$10.99",
+    price: "10.99",
     description:
       "A refreshing mix of seasonal fruits, perfect for a light snack.",
     image: "/Food.png",
@@ -84,45 +84,45 @@ export const Salads = [
 export const Lunches = [
   {
     name: "Finger food",
-    price: "$12.99",
+    price: "12.99",
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
   },
   {
     name: "Finger food",
-    price: "$12.99",
+    price: "12.99",
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
   },
   {
     name: "Finger food",
-    price: "$12.99",
+    price: "12.99",
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
   },
   {
     name: "Finger food",
-    price: "$12.99",
+    price: "12.99",
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
   },
   {
     name: "Finger food",
-    price: "$12.99",
+    price: "12.99",
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
   },
 ];
 
-export const FoodList = ({ item }: FoodListProps) => {
+export const FoodList = ({ food }: FoodListProps) => {
   return (
     <div className="grid grid-cols-3 gap-16">
-      {item.map((item, index) => (
+      {food.map((item, index) => (
         <Card key={index} className="w-full relative">
           <CardContent>
             <div className="relative">
@@ -130,7 +130,7 @@ export const FoodList = ({ item }: FoodListProps) => {
                 className="rounded-2xl w-full h-64 object-cover"
                 src={item.image}
               />
-              <FoodCard key={index} />
+              <FoodCard item={item} />
             </div>
             <div className="flex justify-between pt-5">
               <p className="text-[28px] leading-8 text-[#EF4444] font-bold">

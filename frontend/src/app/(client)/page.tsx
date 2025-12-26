@@ -12,20 +12,20 @@ const Home = () => {
         <h2 className="text-[30px] leading-6 text-white font-semibold mb-6">
           Appetizers
         </h2>
-        <FoodList item={Appetizers} />
+        <FoodList food={Appetizers} />
 
         <h2 className="text-[30px] leading-6 text-white font-semibold mt-12 mb-6">
           Salads
         </h2>
-        <FoodList item={Salads} />
+        <FoodList food={Salads} />
         <h2 className="text-[30px] leading-6 text-white font-semibold mt-12 mb-6">
           Lunch Favorites
         </h2>
-        <FoodList item={Lunches} />
+        <FoodList food={Lunches} />
         <h2 className="text-[30px] leading-6 text-white font-semibold mt-12 mb-6">
           Salads
         </h2>
-        <FoodList item={Salads} />
+        <FoodList food={Salads} />
       </div>
       <Footer />
     </div>
