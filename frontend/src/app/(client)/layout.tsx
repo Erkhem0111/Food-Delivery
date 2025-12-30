@@ -1,5 +1,6 @@
 "use client";
 
+import { Toaster } from "sonner";
 import { Header } from "./_components/Header";
 
 export default function RootLayout({
@@ -11,6 +12,7 @@ export default function RootLayout({
     <div>
       <Header />
       {children}
+      <Toaster position="top-center" />
     </div>
   );
 }

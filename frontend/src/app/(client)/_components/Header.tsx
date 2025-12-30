@@ -1,13 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { ChevronRight, MapPin, ShoppingCart, User } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { Logo } from "./Logo";
 import {
   Popover,
@@ -15,6 +7,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import Link from "next/link";
+import { Sheet, SheetTrigger } from "@/components/ui/sheet";
 
 export const Header = () => {
   const LoggedIn = true;
@@ -30,25 +23,31 @@ export const Header = () => {
             <p className="text-[#71717A]">Add Location</p>
             <ChevronRight className="size-5 text-[#18181B80]" />
           </div>
-          <div className="w-9 h-9 rounded-full bg-[#F4F4F5] flex items-center justify-center">
-            <ShoppingCart className="size-4 text-[#18181B]" />
-          </div>
-
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button
+                variant="outline"
+                className="w-9 h-9 rounded-full bg-[#F4F4F5] flex items-center justify-center cursor-pointer"
+              >
+                <ShoppingCart className="size-4 text-[#18181B]" />
+              </Button>
+            </SheetTrigger>
+          </Sheet>
           <Popover>
             <PopoverTrigger asChild>
               <Button
                 variant="secondary"
-                className="w-9 h-9 rounded-full bg-[#EF4444] flex items-center justify-center"
+                className="w-9 h-9 rounded-full bg-[#EF4444] flex items-center justify-center cursor-pointer"
               >
                 <User className="size-4 text-[#FAFAFA]" />
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-fit  flex flex-col gap-2 justify-center items-center">
+            <PopoverContent className="w-fit flex flex-col gap-2 justify-center items-center">
               <p>Test@gmail.com</p>
               <Link href="/Login">
                 <Button
                   variant="destructive"
-                  className="h-9 px-3 rounded-full bg-[#F4F4F5] flex items-center justify-center text-[#18181B]"
+                  className="h-9 px-3 rounded-full bg-[#F4F4F5] flex items-center justify-center text-[#18181B] cursor-pointer"
                 >
                   Sign out
                 </Button>

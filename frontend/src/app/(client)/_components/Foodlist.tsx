@@ -15,42 +15,42 @@ export type FoodListProps = {
 export const Appetizers = [
   {
     name: "Finger food",
-    price: "12.99",
+    price: 12.99,
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
   },
   {
     name: "Finger food",
-    price: "12.99",
+    price: 12.99,
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
   },
   {
     name: "Finger food",
-    price: "12.99",
+    price: 12.99,
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
   },
   {
     name: "Finger food",
-    price: "12.99",
+    price: 12.99,
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
   },
   {
     name: "Finger food",
-    price: "12.99",
+    price: 12.99,
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
   },
   {
     name: "Finger food",
-    price: "12.99",
+    price: 12.99,
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
@@ -60,21 +60,21 @@ export const Appetizers = [
 export const Salads = [
   {
     name: "Fruit Salad",
-    price: "10.99",
+    price: 10.99,
     description:
       "A refreshing mix of seasonal fruits, perfect for a light snack.",
     image: "/Food.png",
   },
   {
     name: "Fruit Salad",
-    price: "10.99",
+    price: 10.99,
     description:
       "A refreshing mix of seasonal fruits, perfect for a light snack.",
     image: "/Food.png",
   },
   {
     name: "Fruit Salad",
-    price: "10.99",
+    price: 10.99,
     description:
       "A refreshing mix of seasonal fruits, perfect for a light snack.",
     image: "/Food.png",
@@ -84,35 +84,35 @@ export const Salads = [
 export const Lunches = [
   {
     name: "Finger food",
-    price: "12.99",
+    price: 12.99,
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
   },
   {
     name: "Finger food",
-    price: "12.99",
+    price: 12.99,
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
   },
   {
     name: "Finger food",
-    price: "12.99",
+    price: 12.99,
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
   },
   {
     name: "Finger food",
-    price: "12.99",
+    price: 12.99,
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
   },
   {
     name: "Finger food",
-    price: "12.99",
+    price: 12.99,
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
@@ -137,7 +137,7 @@ export const FoodList = ({ food }: FoodListProps) => {
                 {item.name}
               </p>
               <p className="text-[20px] leading-7 text-[#09090B] font-bold">
-                {item.price}
+                {item.price}$
               </p>
             </div>
             <p className="text-[16px] leading-5 text-[#09090B] font-medium font-sans pt-2">
