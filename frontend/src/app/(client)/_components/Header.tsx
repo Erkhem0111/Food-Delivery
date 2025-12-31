@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ChevronRight, MapPin, ShoppingCart, User } from "lucide-react";
+import { ChevronRight, MapPin, User } from "lucide-react";
 import { Logo } from "./Logo";
 import {
   Popover,
@@ -7,7 +7,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import Link from "next/link";
-import { Sheet, SheetTrigger } from "@/components/ui/sheet";
+import { StoreSheet } from "./StoreSheet";
 
 export const Header = () => {
   const LoggedIn = true;
@@ -23,16 +23,7 @@ export const Header = () => {
             <p className="text-[#71717A]">Add Location</p>
             <ChevronRight className="size-5 text-[#18181B80]" />
           </div>
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button
-                variant="outline"
-                className="w-9 h-9 rounded-full bg-[#F4F4F5] flex items-center justify-center cursor-pointer"
-              >
-                <ShoppingCart className="size-4 text-[#18181B]" />
-              </Button>
-            </SheetTrigger>
-          </Sheet>
+          <StoreSheet />
           <Popover>
             <PopoverTrigger asChild>
               <Button

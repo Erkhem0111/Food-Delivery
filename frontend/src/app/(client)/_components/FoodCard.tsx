@@ -72,7 +72,7 @@ export const FoodCard = ({ item }: FoodCardProps) => {
                 </h1>
                 <Button
                   onClick={increase}
-                  variant="ghost"
+                  variant="outline"
                   className="w-9 h-9 rounded-full bg-[#F4F4F5] text-[#18181B] flex items-center justify-center border-2 cursor-pointer"
                 >
                   <Plus />
