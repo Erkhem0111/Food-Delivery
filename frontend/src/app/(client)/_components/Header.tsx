@@ -7,7 +7,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import Link from "next/link";
-import { StoreSheet } from "./StoreSheet";
+import { CartSheet } from "./CartSheet";
 
 export const Header = () => {
   const LoggedIn = true;
@@ -23,7 +23,7 @@ export const Header = () => {
             <p className="text-[#71717A]">Add Location</p>
             <ChevronRight className="size-5 text-[#18181B80]" />
           </div>
-          <StoreSheet />
+          <CartSheet />
           <Popover>
             <PopoverTrigger asChild>
               <Button
