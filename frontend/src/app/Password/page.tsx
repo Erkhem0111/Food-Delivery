@@ -1,24 +1,17 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
   Form,
   FormControl,
   FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ChevronLeft } from "lucide-react";
-import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -112,13 +105,15 @@ const Password = () => {
                 <Checkbox />
                 <Label>Show password</Label>
               </div>
-              <Button
-                variant="outline"
-                className="w-full h-9 flex items-center justify-center cursor-pointer bg-gray-300 mt-6"
-                type="submit"
-              >
-                Let's Go
-              </Button>
+              <Link href="/Login">
+                <Button
+                  variant="outline"
+                  className="w-full h-9 flex items-center justify-center cursor-pointer bg-gray-300 mt-6"
+                  type="submit"
+                >
+                  Let's Go
+                </Button>
+              </Link>
             </form>
           </Form>
         </CardContent>

@@ -126,9 +126,9 @@ export const FoodList = ({ food }: FoodListProps) => {
       {food.map((item, index) => (
         <Card key={index} className="w-full relative">
           <CardContent>
-            <div className="relative">
+            <div className="relative h-64 overflow-hidden rounded-2xl">
               <img
-                className="rounded-2xl w-full h-64 object-cover"
+                className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                 src={item.image}
               />
               <FoodCard item={item} />

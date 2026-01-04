@@ -38,8 +38,8 @@ export const FoodCard = ({ item }: FoodCardProps) => {
           {open ? <Check /> : <Plus />}
         </Button>
       </DialogTrigger>
-      <DialogContent className="flex sm:max-w-206 h-103">
-        <img src={item.image} className="rounded-2xl w-93 h-91 object-cover" />
+      <DialogContent className="flex sm:max-w-206 h-103 overflow-hidden">
+        <img src={item.image} className="rounded-2xl w-93 h-91 object-cover " />
         <div className="flex flex-col justify-between">
           <div className="flex flex-col">
             <p className="text-[28px] leading-8 text-[#EF4444] font-bold">

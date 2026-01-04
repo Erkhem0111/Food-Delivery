@@ -70,13 +70,15 @@ const Signup = () => {
                   )}
                 />
               </div>
-              <Button
-                variant="outline"
-                className="w-full h-9 flex items-center justify-center cursor-pointer bg-gray-300 mt-6"
-                type="submit"
-              >
-                Let's Go
-              </Button>
+              <Link href="/Password">
+                <Button
+                  variant="outline"
+                  className="w-full h-9 flex items-center justify-center cursor-pointer bg-gray-300 mt-6"
+                  type="submit"
+                >
+                  Let's Go
+                </Button>
+              </Link>
             </form>
           </Form>
         </CardContent>
