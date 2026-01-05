@@ -3,17 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Minus, Plus } from "lucide-react";
 import { useState } from "react";
 
-export type CardItemProps = {
-  item: {
-    name: string;
-    price: number;
-    description: string;
-    image: string;
-  };
-};
+interface CartItemProps {
+  item: CartItemType;
+  onUpdateQuantity: (id: number, quantity: number) => void;
+  onRemove: (id: number) => void;
+}
 
-export const CartItem = ({ item }: CardItemProps) => {
-  if (!item) return null;
+export const CartItem = ({ item }: CartItemProps) => {
   const [quantity, setQuantity] = useState(1);
   const increase = () => setQuantity(() => quantity + 1);
   const decrease = () => setQuantity(() => (quantity > 1 ? quantity - 1 : 1));

@@ -20,6 +20,7 @@ export const Appetizers = [
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
+    id: 1,
   },
   {
     name: "Finger food",
@@ -27,6 +28,7 @@ export const Appetizers = [
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
+    id: 2,
   },
   {
     name: "Finger food",
@@ -34,6 +36,7 @@ export const Appetizers = [
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
+    id: 3,
   },
   {
     name: "Finger food",
@@ -41,6 +44,7 @@ export const Appetizers = [
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
+    id: 4,
   },
   {
     name: "Finger food",
@@ -48,6 +52,7 @@ export const Appetizers = [
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
+    id: 5,
   },
   {
     name: "Finger food",
@@ -55,6 +60,7 @@ export const Appetizers = [
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
+    id: 6,
   },
 ];
 
@@ -65,6 +71,7 @@ export const Salads = [
     description:
       "A refreshing mix of seasonal fruits, perfect for a light snack.",
     image: "/Food.png",
+    id: 7,
   },
   {
     name: "Fruit Salad",
@@ -72,6 +79,7 @@ export const Salads = [
     description:
       "A refreshing mix of seasonal fruits, perfect for a light snack.",
     image: "/Food.png",
+    id: 8,
   },
   {
     name: "Fruit Salad",
@@ -79,6 +87,7 @@ export const Salads = [
     description:
       "A refreshing mix of seasonal fruits, perfect for a light snack.",
     image: "/Food.png",
+    id: 9,
   },
 ];
 
@@ -89,6 +98,7 @@ export const Lunches = [
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
+    id: 10,
   },
   {
     name: "Finger food",
@@ -96,6 +106,7 @@ export const Lunches = [
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
+    id: 11,
   },
   {
     name: "Finger food",
@@ -103,6 +114,7 @@ export const Lunches = [
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
+    id: 12,
   },
   {
     name: "Finger food",
@@ -110,6 +122,7 @@ export const Lunches = [
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
+    id: 13,
   },
   {
     name: "Finger food",
@@ -117,6 +130,7 @@ export const Lunches = [
     description:
       "Fluffy pancakes stacked with fruits, cream, syrup, and powdered sugar.",
     image: "/Food.png",
+    id: 14,
   },
 ];
 

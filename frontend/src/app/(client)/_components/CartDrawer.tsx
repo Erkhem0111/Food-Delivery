@@ -2,22 +2,26 @@
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { ShoppingCartIcon } from "lucide-react";
-import { CartItem } from "./CartItem";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useCart } from "./CartContext";
 
-export type CartSheetProps = {
-  item: {
-    name: string;
-    price: number;
-    description: string;
-    image: string;
-  };
-};
+export function CartDrawer() {
+  const {
+    cartItems,
+    removeFromCart,
+    updateQuantity,
+    getTotalPrice,
+    isCartOpen,
+    setIsCartOpen,
+  } = useCart();
 
-export const CartSheet = ({ item }: CartSheetProps) => {
+  const subtotal = getTotalPrice();
+  const shipping = 0.99;
+  const total = subtotal + shipping;
+
   return (
-    <Sheet>
+    <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
       <SheetTrigger asChild>
         <Button
           variant="outline"
@@ -52,7 +56,6 @@ export const CartSheet = ({ item }: CartSheetProps) => {
                 <CardTitle className="text-[20px] leading-7 font-semibold text-[#71717A]">
                   My cart
                 </CardTitle>
-                <CartItem item={item} />
               </CardHeader>
               <CardContent></CardContent>
             </Card>
@@ -61,4 +64,4 @@ export const CartSheet = ({ item }: CartSheetProps) => {
       </SheetContent>
     </Sheet>
   );
-};
+}
