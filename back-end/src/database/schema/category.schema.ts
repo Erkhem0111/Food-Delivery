@@ -1,0 +1,11 @@
+import { model, Schema } from "mongoose";
+
+export const CategorySchema = new Schema(
+  {
+    name: { type: String, required: true },
+  },
+  {
+    timestamps: true,
+  }
+);
+export const CategoryModel = model("Category", CategorySchema);
