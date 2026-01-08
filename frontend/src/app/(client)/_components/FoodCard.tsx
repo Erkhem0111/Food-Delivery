@@ -4,9 +4,11 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Check, Minus, Plus } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { useCart } from "./CartContext";
 
 export type FoodCardProps = {
   item: {
+    id: number;
     name: string;
     price: number;
     description: string;
@@ -15,6 +17,14 @@ export type FoodCardProps = {
 };
 
 export const FoodCard = ({ item }: FoodCardProps) => {
+  const {
+    cartItems,
+    removeFromCart,
+    updateQuantity,
+    getTotalPrice,
+    isCartOpen,
+    setIsCartOpen,
+  } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [open, setOpen] = useState(false);
   const handleClick = () => {
@@ -27,6 +37,21 @@ export const FoodCard = ({ item }: FoodCardProps) => {
   const increase = () => setQuantity(() => quantity + 1);
   const decrease = () => setQuantity(() => (quantity > 1 ? quantity - 1 : 1));
   const totalPrice = item.price * quantity;
+  const handleAddCart = () => {
+    const isAlreadyInCart = cartItems.some(
+      (cartItem) => cartItem.id === item.id
+    );
+    addToCart({
+      id: item.id,
+      name: item.name,
+      price: `${item.price}$`,
+      description: item.description,
+      image: item.image,
+    });
+    if (!isAlreadyInCart) {
+      toast.success("Food is being added to the cart!");
+    }
+  };
   return (
     <Dialog open={open} onOpenChange={a}>
       <DialogTrigger asChild>
@@ -79,12 +104,7 @@ export const FoodCard = ({ item }: FoodCardProps) => {
                 </Button>
               </div>
             </div>
-            <Button
-              className="w-full h-11 bg-[#18181B] text-[14px] leading-5 text-[#FAFAFA] font-medium flex items-center justify-center"
-              onClick={() => toast.success("Food is being added to the cart!")}
-            >
-              Add to cart
-            </Button>
+            <Button onClick={handleAddCart}>Add to cart</Button>
           </div>
         </div>
       </DialogContent>
