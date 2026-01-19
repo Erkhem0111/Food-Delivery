@@ -1,10 +1,10 @@
 "use client";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { ShoppingCartIcon } from "lucide-react";
+import { HandPlatter, ShoppingCartIcon } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useCart } from "./CartContext";
+import { CartContent } from "./CartContent";
+import { useCart } from "../context/CartContext";
 
 export function CartDrawer() {
   const {
@@ -50,15 +50,27 @@ export function CartDrawer() {
               Order
             </TabsTrigger>
           </TabsList>
-          <TabsContent value="cart">
-            <Card className="w-full">
-              <CardHeader>
-                <CardTitle className="text-[20px] leading-7 font-semibold text-[#71717A]">
-                  My cart
-                </CardTitle>
-              </CardHeader>
-              <CardContent></CardContent>
-            </Card>
+          <TabsContent value="cart" className="flex-1 flex flex-col mt-0">
+            <CartContent
+              cartItems={cartItems}
+              subtotal={subtotal}
+              shipping={shipping}
+              total={total}
+              onUpdateQuantity={updateQuantity}
+              onRemoveFromCart={removeFromCart}
+            />
+          </TabsContent>
+          <TabsContent value="order">
+            <div className="bg-[#F4F4F5] flex flex-col gap-1 items-center justify-center rounded-2xl">
+              <HandPlatter className="text-[#EF4444] size-12" />
+              <p className="text-[#09090B] text-[16px] font-bold">
+                No Orders Yet?{" "}
+              </p>
+              <p className="text-[#71717A] text-[12px] font-normal text-center">
+                🍕 "You haven't placed any orders yet. Start exploring our menu
+                and satisfy your cravings!"
+              </p>
+            </div>
           </TabsContent>
         </Tabs>
       </SheetContent>

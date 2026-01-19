@@ -1,13 +1,14 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { CartItem } from "./CartItem";
 import { DeliveryLocation } from "./DeliveryLocation";
 import { PaymentSummary } from "./PaymentSummary";
 import { EmptyCart } from "./EmptyCart";
+import { CartItem } from "./CartItem";
+import { CartItemType } from "../context/CartContext";
 
 interface CartContentProps {
-  cartItems: [];
+  cartItems: CartItemType[];
   subtotal: number;
   shipping: number;
   total: number;

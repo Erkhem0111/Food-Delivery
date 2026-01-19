@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, ReactNode } from "react";
-import { CartDrawer } from "./CartDrawer";
+import { CartDrawer } from "../_components/CartDrawer";
 
 type Food = {
   id: number;
@@ -11,12 +11,12 @@ type Food = {
   image: string;
 };
 
-export type CartItem = Food & {
+export type CartItemType = Food & {
   quantity: number;
 };
 
 interface CartContextType {
-  cartItems: CartItem[];
+  cartItems: CartItemType[];
   addToCart: (item: Food) => void;
   removeFromCart: (id: number) => void;
   updateQuantity: (id: number, quantity: number) => void;
@@ -29,15 +29,15 @@ interface CartContextType {
 const CartContext = createContext<CartContextType>({} as CartContextType);
 
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartItems, setCartItems] = useState<CartItemType[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const addToCart = (item: Food) => {
     setCartItems((prevItems) => {
       const existingItem = prevItems.find((i) => i.id === item.id);
       if (existingItem) {
-        return prevItems.map((i) =>
-          i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+        return prevItems.map((food) =>
+          food.id === item.id ? { ...food, quantity: food.quantity + 1 } : food
         );
       }
       return [...prevItems, { ...item, quantity: 1 }];

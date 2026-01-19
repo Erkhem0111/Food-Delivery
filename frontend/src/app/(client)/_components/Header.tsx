@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ChevronRight, MapPin, User } from "lucide-react";
+import { ShoppingCartIcon, User } from "lucide-react";
 import { Logo } from "./Logo";
 import {
   Popover,
@@ -8,8 +8,14 @@ import {
 } from "@/components/ui/popover";
 import Link from "next/link";
 import { CartDrawer } from "./CartDrawer";
+import { DeliveryLocation } from "./DeliveryLocation";
 
-export const Header = () => {
+interface HeaderProps {
+  totalItems: number;
+  onCartClick: () => void;
+}
+
+export function Header({ totalItems, onCartClick }: HeaderProps) {
   const LoggedIn = true;
   return (
     <div className="bg-[#18181B] flex items-center justify-between px-22 py-3">
@@ -17,13 +23,19 @@ export const Header = () => {
 
       {LoggedIn ? (
         <div className="flex gap-3">
-          <div className="rounded-full bg-[#FFFFFF] flex items-center justify-center w-63 text-[12px] leading-4 font-normal">
-            <MapPin className="size-5 text-[#EF4444]" />
-            <p className="text-[#EF4444]">Delivery address:</p>
-            <p className="text-[#71717A]">Add Location</p>
-            <ChevronRight className="size-5 text-[#18181B80]" />
-          </div>
-          <CartDrawer />
+          <DeliveryLocation />
+          <Button
+            variant="outline"
+            className="w-9 h-9 rounded-full bg-[#F4F4F5] flex items-center justify-center cursor-pointer"
+            onClick={onCartClick}
+          >
+            <ShoppingCartIcon className="size-4 text-[#18181B]" />
+            {totalItems > 0 && (
+              <span className="absolute -top-1 -right-1 bg-white text-red-500 text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center shadow-sm">
+                {totalItems}
+              </span>
+            )}
+          </Button>
           <Popover>
             <PopoverTrigger asChild>
               <Button
@@ -58,4 +70,4 @@ export const Header = () => {
       )}
     </div>
   );
-};
+}

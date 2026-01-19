@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Minus, Plus } from "lucide-react";
 import { useState } from "react";
+import { CartItemType } from "../context/CartContext";
 
 interface CartItemProps {
   item: CartItemType;
@@ -9,12 +10,11 @@ interface CartItemProps {
   onRemove: (id: number) => void;
 }
 
-export const CartItem = ({ item }: CartItemProps) => {
-  const [quantity, setQuantity] = useState(1);
-  const increase = () => setQuantity(() => quantity + 1);
-  const decrease = () => setQuantity(() => (quantity > 1 ? quantity - 1 : 1));
-  const totalPrice = item.price * quantity;
-  console.log(item);
+export const CartItem = ({
+  item,
+  onUpdateQuantity,
+  onRemove,
+}: CartItemProps) => {
   return (
     <div className="w-110 h-30 flex">
       <img src={item.image} className="rounded-2xl w-32 h-30 object-cover" />
@@ -30,27 +30,25 @@ export const CartItem = ({ item }: CartItemProps) => {
         <div className="flex justify-between">
           <div className="flex gap-3">
             <Button
-              onClick={decrease}
               variant="outline"
               className="w-9 h-9 rounded-full bg-[#F4F4F5] text-[#18181B] flex items-center justify-center cursor-pointer"
+              onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}
             >
               <Minus />
             </Button>
-            <h1 className="text-[18px] text-[#09090B] font-semibold">
-              {quantity}
-            </h1>
+            <h1 className="text-[18px] text-[#09090B] font-semibold">{}</h1>
             <Button
-              onClick={increase}
               variant="outline"
               className="w-9 h-9 rounded-full bg-[#F4F4F5] text-[#18181B] flex items-center justify-center cursor-pointer"
+              onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
             >
               <Plus />
             </Button>
           </div>
           <div>
-            <p className="text-[16px] leading-7 text-[#09090B] font-bold">
-              {totalPrice}$
-            </p>
+            <span className="text-[16px] leading-7 text-[#09090B] font-bold">
+              {item.price}$
+            </span>
           </div>
         </div>
       </div>
