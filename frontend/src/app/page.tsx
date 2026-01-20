@@ -1,49 +1,12 @@
-// "use client";
-
-// import { FoodCard } from "./_components/FoodCard";
-// import { Footer } from "./_components/Footer";
-// import { Header } from "./_components/Header";
-
-// const Home = () => {
-//   return (
-//     <div className="bg-[#404040]">
-//       <Header />
-//       <img src="/BG.png" />
-
-//       <div className="bg-[#404040] px-22 py-12">
-//         <h2 className="text-[30px] leading-6 text-white font-semibold mb-6">
-//           Appetizers
-//         </h2>
-//         <FoodCard food={Appetizers} />
-
-//         <h2 className="text-[30px] leading-6 text-white font-semibold mt-12 mb-6">
-//           Salads
-//         </h2>
-//         <FoodList food={Salads} />
-//         <h2 className="text-[30px] leading-6 text-white font-semibold mt-12 mb-6">
-//           Lunch Favorites
-//         </h2>
-//         <FoodList food={Lunches} />
-//         <h2 className="text-[30px] leading-6 text-white font-semibold mt-12 mb-6">
-//           Salads
-//         </h2>
-//         <FoodList food={Salads} />
-//       </div>
-//       <Footer />
-//     </div>
-//   );
-// };
-// export default Home;
-
 "use client";
 
 import { useState } from "react";
 import { toast } from "sonner";
-import { useCart } from "./context/CartContext";
-import { FoodItem } from "./_components/FoodCard";
-import { Header } from "./_components/Header";
-import { FoodDetailDialog } from "./_components/FoodDetailDialog";
-import { FoodGrid } from "./_components/FoodGrid";
+import { useCart } from "./(client)/context/CartContext";
+import { FoodItem } from "./(client)/_components/FoodCard";
+import { Header } from "./(client)/_components/Header";
+import { FoodGrid } from "./(client)/_components/FoodGrid";
+import { FoodDetailDialog } from "./(client)/_components/FoodDetailDialog";
 
 const foodItems = [
   {
@@ -113,11 +76,12 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#2a2a2a]">
+    <div className="bg-[#404040]">
       <Header
         totalItems={getTotalItems()}
         onCartClick={() => setIsCartOpen(true)}
       />
+      <img src="/BG.png" />
 
       <FoodGrid
         title="Appetizers"

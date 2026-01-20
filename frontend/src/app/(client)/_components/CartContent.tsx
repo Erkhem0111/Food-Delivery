@@ -29,11 +29,11 @@ export function CartContent({
       <div className="flex-1 overflow-auto px-6 py-4">
         <h3 className="text-lg font-semibold mb-4">My cart</h3>
 
-        {cartItems.length === 0 ? (
+        {cartItems?.length === 0 ? (
           <EmptyCart />
         ) : (
           <div className="space-y-4">
-            {cartItems.map((item) => (
+            {cartItems?.map((item) => (
               <CartItem
                 key={item.id}
                 item={item}
@@ -44,7 +44,7 @@ export function CartContent({
           </div>
         )}
 
-        {cartItems.length > 0 && (
+        {cartItems?.length > 0 && (
           <>
             <DeliveryLocation />
             <PaymentSummary
@@ -56,7 +56,7 @@ export function CartContent({
         )}
       </div>
 
-      {cartItems.length > 0 && (
+      {cartItems?.length > 0 && (
         <div className="p-6 border-t">
           <Button className="w-full bg-red-500 hover:bg-red-600 text-white py-6 rounded-full text-base font-semibold">
             Checkout

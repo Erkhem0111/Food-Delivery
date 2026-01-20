@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Minus, Plus, X } from "lucide-react";
 import { FoodItem } from "./FoodCard";
 
@@ -38,7 +38,7 @@ export function FoodDetailDialog({
           className="absolute right-3 top-3 rounded-full bg-white/90 backdrop-blur-sm shadow-md z-10 hover:bg-white h-8 w-8"
           onClick={onClose}
         >
-          <X className="h-3.5 w-3.5" />
+          <X className="text-black size-4 stroke-3" />
         </Button>
         {food && (
           <div>
@@ -62,7 +62,7 @@ export function FoodDetailDialog({
                       Total price
                     </p>
                     <p className="text-[20px] leading-7 text-[#09090B] font-bold">
-                      {}$
+                      {food.price}
                     </p>
                   </div>
                   <div className="flex gap-3">
