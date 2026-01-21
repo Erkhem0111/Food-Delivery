@@ -1,0 +1,50 @@
+"use client";
+
+import { PaymentSummary } from "./PaymentSummary";
+import { EmptyCart } from "./EmptyCart";
+import { CartItem } from "./CartItem";
+import { CartItemType } from "../context/CartContext";
+
+interface CartContentProps {
+  cartItems: CartItemType[];
+  subtotal: number;
+  shipping: number;
+  total: number;
+  onUpdateQuantity: (id: number, quantity: number) => void;
+  onRemoveFromCart: (id: number) => void;
+}
+
+export function OrderHistory({
+  cartItems,
+  subtotal,
+  shipping,
+  total,
+  onUpdateQuantity,
+  onRemoveFromCart,
+}: CartContentProps) {
+  return (
+    <>
+      <div className="flex-1 flex-col py-4 justify-between">
+        <div className="bg-[#FFFFFF] rounded-2xl p-4 h-232 overflow-hidden overflow-y-scroll">
+          <h3 className="text-[22px] font-semibold mb-4 text-[#71717A]">
+            Order history
+          </h3>
+          {cartItems?.length === 0 ? (
+            <EmptyCart />
+          ) : (
+            <div className="space-y-4">
+              {cartItems?.map((item) => (
+                <CartItem
+                  key={item.id}
+                  item={item}
+                  onUpdateQuantity={onUpdateQuantity}
+                  onRemove={onRemoveFromCart}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </>
+  );
+}

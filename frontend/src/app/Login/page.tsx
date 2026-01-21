@@ -24,7 +24,7 @@ const formSchema = z.object({
     .min(6)
     .regex(
       /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-      "Weak password. Use numbers and symbols."
+      "Weak password. Use numbers and symbols.",
     ),
 });
 
@@ -84,6 +84,7 @@ const Login = () => {
                     <FormItem>
                       <FormControl>
                         <Input
+                          type="password"
                           className="h-11"
                           placeholder="Password"
                           {...field}
@@ -95,12 +96,14 @@ const Login = () => {
                   )}
                 />
               </div>
-              <Button
-                className="text-[14px] leading-5 text-[#18181B] font-normal"
-                variant="link"
-              >
-                Forgot password?
-              </Button>
+              <Link href="/Password">
+                <Button
+                  className="text-[14px] leading-5 text-[#18181B] font-normal"
+                  variant="link"
+                >
+                  Forgot password?
+                </Button>
+              </Link>
               <Button
                 variant="outline"
                 className="w-full h-9 flex items-center justify-center cursor-pointer bg-gray-300 mt-6"

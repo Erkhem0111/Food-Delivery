@@ -1,10 +1,11 @@
 "use client";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { HandPlatter, ShoppingCartIcon } from "lucide-react";
+import { ShoppingCartIcon } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CartContent } from "./CartContent";
 import { useCart } from "../context/CartContext";
+import { OrderHistory } from "./OrderHistory";
 
 export function CartDrawer() {
   const {
@@ -30,7 +31,7 @@ export function CartDrawer() {
           <ShoppingCartIcon className="size-4 text-[#18181B]" />
         </Button>
       </SheetTrigger>
-      <SheetContent className="bg-[#404040] p-8 sm:max-w-136">
+      <SheetContent className="bg-[#404040] p-8 sm:max-w-136 rounded-l-3xl">
         <div className="flex items-center gap-3 text-[20px] leading-7 font-semibold text-[#FAFAFA]">
           <ShoppingCartIcon />
           <h4>Order detail</h4>
@@ -50,7 +51,7 @@ export function CartDrawer() {
               Order
             </TabsTrigger>
           </TabsList>
-          <TabsContent value="cart" className="flex-1 flex flex-col mt-0">
+          <TabsContent value="cart" className="flex flex-col mt-0">
             <CartContent
               cartItems={cartItems}
               subtotal={subtotal}
@@ -61,16 +62,14 @@ export function CartDrawer() {
             />
           </TabsContent>
           <TabsContent value="order">
-            <div className="bg-[#F4F4F5] flex flex-col gap-1 items-center justify-center rounded-2xl">
-              <HandPlatter className="text-[#EF4444] size-12" />
-              <p className="text-[#09090B] text-[16px] font-bold">
-                No Orders Yet?{" "}
-              </p>
-              <p className="text-[#71717A] text-[12px] font-normal text-center">
-                🍕 "You haven't placed any orders yet. Start exploring our menu
-                and satisfy your cravings!"
-              </p>
-            </div>
+            <OrderHistory
+              cartItems={cartItems}
+              subtotal={subtotal}
+              shipping={shipping}
+              total={total}
+              onUpdateQuantity={updateQuantity}
+              onRemoveFromCart={removeFromCart}
+            />
           </TabsContent>
         </Tabs>
       </SheetContent>

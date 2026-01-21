@@ -1,11 +1,10 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { DeliveryLocation } from "./DeliveryLocation";
 import { PaymentSummary } from "./PaymentSummary";
 import { EmptyCart } from "./EmptyCart";
 import { CartItem } from "./CartItem";
 import { CartItemType } from "../context/CartContext";
+import { Input } from "@/components/ui/input";
 
 interface CartContentProps {
   cartItems: CartItemType[];
@@ -26,43 +25,46 @@ export function CartContent({
 }: CartContentProps) {
   return (
     <>
-      <div className="flex-1 overflow-auto px-6 py-4">
-        <h3 className="text-lg font-semibold mb-4">My cart</h3>
-
+      <div className="flex-1 flex-col py-4 justify-between">
+        <div className="bg-[#FFFFFF] rounded-2xl h-152 p-4 overflow-hidden overflow-y-scroll">
+          <h3 className="text-[22px] font-semibold mb-4 text-[#71717A]">
+            My cart
+          </h3>
+          {cartItems?.length === 0 ? (
+            <EmptyCart />
+          ) : (
+            <div className="h-152 flex flex-col justify-between">
+              <div className="space-y-4">
+                {cartItems?.map((item) => (
+                  <CartItem
+                    key={item.id}
+                    item={item}
+                    onUpdateQuantity={onUpdateQuantity}
+                    onRemove={onRemoveFromCart}
+                  />
+                ))}
+              </div>
+              <div>
+                <h3 className="text-[22px] font-semibold mb-4 text-[#71717A]">
+                  Delivery location
+                </h3>
+                <Input className="pb-13 pt-4" />
+              </div>
+            </div>
+          )}
+        </div>
         {cartItems?.length === 0 ? (
-          <EmptyCart />
+          <PaymentSummary />
         ) : (
-          <div className="space-y-4">
-            {cartItems?.map((item) => (
-              <CartItem
-                key={item.id}
-                item={item}
-                onUpdateQuantity={onUpdateQuantity}
-                onRemove={onRemoveFromCart}
-              />
-            ))}
-          </div>
-        )}
-
-        {cartItems?.length > 0 && (
-          <>
-            <DeliveryLocation />
+          <div>
             <PaymentSummary
               subtotal={subtotal}
               shipping={shipping}
               total={total}
             />
-          </>
+          </div>
         )}
       </div>
-
-      {cartItems?.length > 0 && (
-        <div className="p-6 border-t">
-          <Button className="w-full bg-red-500 hover:bg-red-600 text-white py-6 rounded-full text-base font-semibold">
-            Checkout
-          </Button>
-        </div>
-      )}
     </>
   );
 }

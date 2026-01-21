@@ -28,7 +28,7 @@ export function FoodCard({ item, onClick }: FoodCardProps) {
           />
           <Button
             size="icon"
-            className="absolute bottom-3 right-3 w-11 h-11 bg-white rounded-full shadow-md hover:text-white hover:shadow-lg transition-all"
+            className="absolute bottom-3 right-3 w-11 h-11 bg-white hover:bg-white rounded-full shadow-3xl cursor-pointer"
             onClick={() => onClick(item)}
           >
             <Plus className="text-[#EF4444] size-4 stroke-4" />

@@ -35,13 +35,13 @@ export function FoodDetailDialog({
         <Button
           variant="ghost"
           size="icon"
-          className="absolute right-3 top-3 rounded-full bg-white/90 backdrop-blur-sm shadow-md z-10 hover:bg-white h-8 w-8"
+          className="absolute right-3 top-3 rounded-full bg-white/90 backdrop-blur-sm shadow-md z-10 hover:bg-white h-8 w-8 cursor-pointer"
           onClick={onClose}
         >
           <X className="text-black size-4 stroke-3" />
         </Button>
         {food && (
-          <div>
+          <div className="flex gap-6">
             <img
               src={food.image}
               className="rounded-2xl w-93 h-91 object-cover "
@@ -65,7 +65,7 @@ export function FoodDetailDialog({
                       {food.price}
                     </p>
                   </div>
-                  <div className="flex gap-3">
+                  <div className="flex gap-3 items-center">
                     <Button
                       variant="outline"
                       className="w-9 h-9 rounded-full bg-[#F4F4F5] text-[#18181B] flex items-center justify-center border-2 cursor-pointer"
@@ -85,7 +85,9 @@ export function FoodDetailDialog({
                     </Button>
                   </div>
                 </div>
-                <Button onClick={handleAddToCart}>Add to cart</Button>
+                <Button className="cursor-pointer" onClick={handleAddToCart}>
+                  Add to cart
+                </Button>
               </div>
             </div>
           </div>

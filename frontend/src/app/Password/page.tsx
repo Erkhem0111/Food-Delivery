@@ -22,10 +22,6 @@ import Link from "next/link";
 const formSchema = z
   .object({
     password: z.string().min(6),
-    //   .regex(
-    //     /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-    //     "Weak password. Use numbers and symbols."
-    //   ),
     confirmPassword: z
       .string()
       .min(6, "Weak password. Use numbers and symbols."),
@@ -73,6 +69,7 @@ const Password = () => {
                     <FormItem>
                       <FormControl>
                         <Input
+                          type="password"
                           className="h-11"
                           placeholder="Password"
                           {...field}
@@ -90,6 +87,7 @@ const Password = () => {
                     <FormItem>
                       <FormControl>
                         <Input
+                          type="password"
                           className="h-11"
                           placeholder="Confirm"
                           {...field}

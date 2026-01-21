@@ -7,6 +7,7 @@ import { FoodItem } from "./(client)/_components/FoodCard";
 import { Header } from "./(client)/_components/Header";
 import { FoodGrid } from "./(client)/_components/FoodGrid";
 import { FoodDetailDialog } from "./(client)/_components/FoodDetailDialog";
+import { Footer } from "./(client)/_components/Footer";
 
 const foodItems = [
   {
@@ -76,24 +77,27 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-[#404040]">
-      <Header
-        totalItems={getTotalItems()}
-        onCartClick={() => setIsCartOpen(true)}
-      />
-      <img src="/BG.png" />
+    <>
+      <div className="bg-[#404040]">
+        <Header
+          totalItems={getTotalItems()}
+          onCartClick={() => setIsCartOpen(true)}
+        />
+        <img src="/BG.png" />
 
-      <FoodGrid
-        title="Appetizers"
-        items={foodItems}
-        onItemClick={setSelectedFood}
-      />
+        <FoodGrid
+          title="Appetizers"
+          items={foodItems}
+          onItemClick={setSelectedFood}
+        />
 
-      <FoodDetailDialog
-        food={selectedFood}
-        onClose={() => setSelectedFood(null)}
-        onAddToCart={handleAddToCart}
-      />
-    </div>
+        <FoodDetailDialog
+          food={selectedFood}
+          onClose={() => setSelectedFood(null)}
+          onAddToCart={handleAddToCart}
+        />
+      </div>
+      <Footer />
+    </>
   );
 }

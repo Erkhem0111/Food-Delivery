@@ -44,6 +44,24 @@ export const Footer = () => {
           <p className="text-[30px] text-white font-semibold px-10">
             Fresh fast delivered
           </p>
+          <p className="text-[30px] text-white font-semibold px-10">
+            Fresh fast delivered
+          </p>
+          <p className="text-[30px] text-white font-semibold px-10">
+            Fresh fast delivered
+          </p>
+          <p className="text-[30px] text-white font-semibold px-10">
+            Fresh fast delivered
+          </p>
+          <p className="text-[30px] text-white font-semibold px-10">
+            Fresh fast delivered
+          </p>
+          <p className="text-[30px] text-white font-semibold px-10">
+            Fresh fast delivered
+          </p>
+          <p className="text-[30px] text-white font-semibold px-10">
+            Fresh fast delivered
+          </p>
         </div>
 
         <style>

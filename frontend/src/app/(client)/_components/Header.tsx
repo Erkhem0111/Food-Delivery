@@ -31,7 +31,7 @@ export function Header({ totalItems, onCartClick }: HeaderProps) {
           >
             <ShoppingCartIcon className="size-4 text-[#18181B]" />
             {totalItems > 0 && (
-              <span className="absolute -top-1 -right-1 bg-white text-red-500 text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center shadow-sm">
+              <span className="absolute top-3 right-33 bg-white text-red-500 text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center shadow-lg">
                 {totalItems}
               </span>
             )}

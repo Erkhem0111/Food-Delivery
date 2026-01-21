@@ -29,6 +29,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <CartProvider>{children}</CartProvider>
+
         <Toaster richColors position="top-center" />
       </body>
     </html>
