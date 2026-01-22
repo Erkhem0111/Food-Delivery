@@ -31,6 +31,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { api } from "@/lib/axios";
 
 const foodFormSchema = z.object({
   name: z.string().min(2, {

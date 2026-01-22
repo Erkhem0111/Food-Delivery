@@ -18,7 +18,10 @@ import Snowfall from "react-snowfall";
 import { z } from "zod";
 
 const formSchema = z.object({
-  email: z.string().email("Invalid email. Use a format like example@email.com"),
+  email: z
+    .string()
+    .min(1, "Email is required")
+    .email("Invalid email. Use a format like example@email.com"),
 });
 
 type formSchemaType = z.infer<typeof formSchema>;
@@ -64,7 +67,6 @@ const Signup = () => {
                           {...field}
                         />
                       </FormControl>
-                      <FormDescription></FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}

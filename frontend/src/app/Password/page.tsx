@@ -18,16 +18,22 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import Snowfall from "react-snowfall";
 import Link from "next/link";
+import { useState } from "react";
 
 const formSchema = z
   .object({
-    password: z.string().min(6),
-    confirmPassword: z
+    password: z
       .string()
-      .min(6, "Weak password. Use numbers and symbols."),
+      .min(8, "Password must be at least 8 characters")
+      .regex(/[A-Z]/, "Must include at least one uppercase letter")
+      .regex(/[a-z]/, "Must include at least one uppercase letter")
+      .regex(/[0-9]/, "Must include at least one number")
+      .regex(/[@$!%*?&#]/, "Must include at least one special character"),
+    confirmPassword: z.string().min(1, "Please confirm your password"),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    error: "Those password did’t match, Try again",
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
   });
 
 type formSchemaType = z.infer<typeof formSchema>;
@@ -41,6 +47,7 @@ const Password = () => {
     },
   });
   const onSubmit = (values: formSchemaType) => {};
+  const [show, setShow] = useState(false);
   return (
     <div className="flex items-center justify-between h-screen px-22 gap-52 border-4 border-red-400">
       <Snowfall color="red" snowflakeCount={400} />
@@ -69,7 +76,7 @@ const Password = () => {
                     <FormItem>
                       <FormControl>
                         <Input
-                          type="password"
+                          type={show ? "text" : "password"}
                           className="h-11"
                           placeholder="Password"
                           {...field}
@@ -100,7 +107,7 @@ const Password = () => {
                 />
               </div>
               <div className="flex gap-2 pt-4">
-                <Checkbox />
+                <Checkbox onCheckedChange={(v) => setShow(!!v)} />
                 <Label>Show password</Label>
               </div>
               <Link href="/Login">
