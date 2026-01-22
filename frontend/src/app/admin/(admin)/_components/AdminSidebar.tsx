@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Package } from "lucide-react";
+import { HandPlatter, LayoutDashboard, Truck } from "lucide-react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
@@ -9,18 +9,18 @@ export function AdminSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-64 bg-white border-r border-gray-200 p-6">
-      <div className="flex items-center gap-2 mb-8">
-        <div className="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center">
-          <Package className="w-6 h-6 text-white" />
+    <div className="w-64 bg-white border-r border-gray-200 p-6">
+      <div className="flex items-center gap-2 mb-10 mt-5">
+        <div className="w-14 h-14 bg-red-500 rounded-full flex items-center justify-center">
+          <HandPlatter className="size-8 text-white" />
         </div>
         <div>
-          <h1 className="font-bold text-lg">NomNom</h1>
-          <p className="text-xs text-gray-500">Swift delivery</p>
+          <h1 className="font-bold text-[24px]">NomNom</h1>
+          <p className="text-[16px] text-gray-500">Swift delivery</p>
         </div>
       </div>
 
-      <nav className="space-y-2">
+      <div className="flex flex-col gap-4">
         <Link href="/admin">
           <Button
             variant={pathname === "/admin" ? "default" : "ghost"}
@@ -30,7 +30,7 @@ export function AdminSidebar() {
                 : "w-full justify-start gap-2"
             }
           >
-            <Package className="w-4 h-4" />
+            <LayoutDashboard className="w-4 h-4" />
             Food menu
           </Button>
         </Link>
@@ -43,11 +43,11 @@ export function AdminSidebar() {
                 : "w-full justify-start gap-2"
             }
           >
-            <Package className="w-4 h-4" />
+            <Truck className="w-4 h-4" />
             Orders
           </Button>
         </Link>
-      </nav>
-    </aside>
+      </div>
+    </div>
   );
 }

@@ -29,7 +29,6 @@ import { Plus, Upload, X } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { api } from "@/lib/axios";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
@@ -44,7 +43,7 @@ const foodFormSchema = z.object({
     },
     {
       message: "Price must be a valid positive number.",
-    }
+    },
   ),
   image: z.string().min(1, {
     message: "Image is required.",
@@ -83,7 +82,7 @@ export const CreateFoodDialog = () => {
   });
 
   const handleFileUpload = async (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const file = event.target.files?.[0];
     if (!file) return;
@@ -96,7 +95,7 @@ export const CreateFoodDialog = () => {
         {
           method: "POST",
           body: file,
-        }
+        },
       );
 
       if (!response.ok) {
