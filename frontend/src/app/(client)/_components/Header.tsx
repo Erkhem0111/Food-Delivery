@@ -7,8 +7,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import Link from "next/link";
-import { CartDrawer } from "./CartDrawer";
 import { DeliveryLocation } from "./DeliveryLocation";
+import { useAuth } from "../context/AuthProvider";
 
 interface HeaderProps {
   totalItems: number;
@@ -16,12 +16,11 @@ interface HeaderProps {
 }
 
 export function Header({ totalItems, onCartClick }: HeaderProps) {
-  const LoggedIn = true;
+  const { user, logout } = useAuth();
   return (
     <div className="bg-[#18181B] flex items-center justify-between px-22 py-3">
       <Logo />
-
-      {LoggedIn ? (
+      {user ? (
         <div className="flex gap-3">
           <DeliveryLocation />
           <Button
@@ -50,9 +49,10 @@ export function Header({ totalItems, onCartClick }: HeaderProps) {
               <Link href="/Login">
                 <Button
                   variant="destructive"
+                  onClick={logout}
                   className="h-9 px-3 rounded-full bg-[#F4F4F5] flex items-center justify-center text-[#18181B] cursor-pointer"
                 >
-                  Sign out
+                  Log out
                 </Button>
               </Link>
             </PopoverContent>
@@ -60,10 +60,16 @@ export function Header({ totalItems, onCartClick }: HeaderProps) {
         </div>
       ) : (
         <div className="flex gap-3">
-          <Button className="h-9 px-3 rounded-full bg-[#F4F4F5] text-[#18181B] flex items-center justify-center">
+          <Button
+            variant="outline"
+            className="h-9 px-3 rounded-full bg-[#F4F4F5] text-[#18181B] flex items-center justify-center cursor-pointer"
+          >
             Sign up
           </Button>
-          <Button className="h-9 px-3 rounded-full bg-[#EF4444] flex items-center justify-center">
+          <Button
+            variant="destructive"
+            className="h-9 px-3 rounded-full bg-[#EF4444] flex items-center justify-center cursor-pointer"
+          >
             Log in
           </Button>
         </div>
