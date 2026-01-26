@@ -111,6 +111,8 @@ export const CreateFoodDialog = () => {
       form.setValue("image", blob.url);
     } catch (error) {
       console.error("Upload failed:", error);
+      console.log(error);
+
       alert("Upload failed. Please try again.");
     } finally {
       setIsUploading(false);
@@ -157,10 +159,12 @@ export const CreateFoodDialog = () => {
     >
       <DialogTrigger asChild>
         <Button
-          variant="outline"
-          className="w-full h-full flex flex-col gap-4 items-center justify-center p-4"
+          variant="ghost"
+          className="w-full h-60 flex flex-col gap-3 items-center justify-center shadow-lg font-medium text-[16px]"
         >
-          <Plus />
+          <div className="shadow-lg p-3 rounded-full">
+            <Plus className="stroke-4" />
+          </div>
           Add New Dish
         </Button>
       </DialogTrigger>

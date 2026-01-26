@@ -32,7 +32,7 @@ export default function AdminPage() {
 
   return (
     <main className="flex-1 p-8">
-      <Card className="grid grid-cols-5 gap-4 p-6">
+      <Card className="grid grid-cols-4 gap-4 p-5">
         <CreateFoodDialog />
 
         {foods.map((food) => (
