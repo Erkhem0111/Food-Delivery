@@ -14,6 +14,6 @@ const orderSchema = new Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
-export const OrderSchema = model("Order", orderSchema);
+export const OrderModel = model("Order", orderSchema);

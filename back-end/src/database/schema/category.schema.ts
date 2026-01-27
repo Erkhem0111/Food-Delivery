@@ -2,10 +2,10 @@ import { model, Schema } from "mongoose";
 
 export const CategorySchema = new Schema(
   {
-    name: { type: String, required: true },
+    name: { type: String, required: true, unique: true },
   },
   {
     timestamps: true,
-  }
+  },
 );
 export const CategoryModel = model("Category", CategorySchema);

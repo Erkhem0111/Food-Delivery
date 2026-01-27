@@ -1,6 +1,5 @@
 import type { RequestHandler } from "express";
 import Jwt from "jsonwebtoken";
-import type { UserModel } from "../database/schema/user.schema.ts";
 
 export const authMiddleware: RequestHandler = (req, res, next) => {
   const authorization = req.headers.authorization;
@@ -10,8 +9,9 @@ export const authMiddleware: RequestHandler = (req, res, next) => {
 
   try {
     const { user } = Jwt.verify(token, "Secret") as {
-      user: Omit<typeof UserModel, "password">;
+      user: { _id: string };
     };
+    req.userId = user._id;
     next();
   } catch {
     res.status(401).json({ message: "Invalid token" });
