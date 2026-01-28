@@ -14,6 +14,6 @@ const foodSchema = new Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 export const FoodModel = model("Food", foodSchema);

@@ -7,6 +7,9 @@ export const createFood: RequestHandler = async (req, res) => {
   const food = await FoodModel.create({
     name: body.name,
     price: body.price,
+    ingredients: body.ingredients,
+    image: body.image,
+    categoryIds: body.categoryIds,
   });
 
   res.status(201).json(food);
