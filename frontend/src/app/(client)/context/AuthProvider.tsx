@@ -86,7 +86,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
       }
     };
 
-    if (accessToken) setUser({});
+    if (accessToken) setUser({} as User);
   }, []);
 
   return (

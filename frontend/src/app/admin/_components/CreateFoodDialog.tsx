@@ -132,7 +132,7 @@ export const CreateFoodDialog = () => {
       price: parseFloat(values.price),
       ingredients: values.ingredients,
       image: values.image,
-      categoryIds: [values.categoryId],
+      categoryId: values.categoryId,
     });
 
     form.reset();
@@ -142,7 +142,6 @@ export const CreateFoodDialog = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       const { data } = await api.get<Category[]>("/categories");
-      //  Request failed with status code 404
       setCategories(data);
     };
 
@@ -160,7 +159,7 @@ export const CreateFoodDialog = () => {
       <DialogTrigger asChild>
         <Button
           variant="ghost"
-          className="w-full h-60 flex flex-col gap-3 items-center justify-center shadow-lg font-medium text-[16px]"
+          className="w-full h-full flex flex-col gap-3 items-center justify-center shadow-lg font-medium text-[16px]"
         >
           <div className="shadow-lg p-3 rounded-full">
             <Plus className="stroke-4" />
@@ -268,7 +267,6 @@ export const CreateFoodDialog = () => {
                       {uploadedImageUrl ? (
                         <div className="relative border-2 border-gray-300 rounded-lg overflow-hidden">
                           <Image
-                            // Invalid src prop (https://vj6xfqdrgmjeotzp.public.blob.vercel-storage.com/App%20%282%29.png) on `next/image`, hostname "vj6xfqdrgmjeotzp.public.blob.vercel-storage.com" is not configured under images in your `next.config.js`
                             src={uploadedImageUrl}
                             alt="Uploaded food"
                             width={400}
