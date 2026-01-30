@@ -50,7 +50,7 @@ const Password = () => {
   const [show, setShow] = useState(false);
   return (
     <div className="flex items-center justify-between h-screen px-22 gap-52 border-4 border-red-400">
-      <Snowfall color="red" snowflakeCount={400} />
+      <Snowfall color="pink" snowflakeCount={200} />
       <Card className="w-screen max-w-md">
         <CardContent>
           <Form {...form}>

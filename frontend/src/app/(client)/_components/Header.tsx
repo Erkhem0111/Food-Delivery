@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { ShoppingCartIcon, User } from "lucide-react";
 import { Logo } from "./Logo";
@@ -9,6 +10,7 @@ import {
 import Link from "next/link";
 import { DeliveryLocation } from "./DeliveryLocation";
 import { useAuth } from "../context/AuthProvider";
+import { useRouter } from "next/navigation";
 
 interface HeaderProps {
   totalItems: number;
@@ -16,6 +18,7 @@ interface HeaderProps {
 }
 
 export function Header({ totalItems, onCartClick }: HeaderProps) {
+  const router = useRouter();
   const { user, logout } = useAuth();
   return (
     <div className="bg-[#18181B] flex items-center justify-between px-22 py-3">
@@ -62,12 +65,14 @@ export function Header({ totalItems, onCartClick }: HeaderProps) {
         <div className="flex gap-3">
           <Button
             variant="outline"
+            onClick={() => router.push("/Signup")}
             className="h-9 px-3 rounded-full bg-[#F4F4F5] text-[#18181B] flex items-center justify-center cursor-pointer"
           >
             Sign up
           </Button>
           <Button
             variant="destructive"
+            onClick={() => router.push("/Login")}
             className="h-9 px-3 rounded-full bg-[#EF4444] flex items-center justify-center cursor-pointer"
           >
             Log in

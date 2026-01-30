@@ -10,12 +10,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, Eye, EyeOff } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import Snowfall from "react-snowfall";
 import { useAuth } from "../(client)/context/AuthProvider";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const formSchema = z.object({
   email: z
@@ -37,8 +38,13 @@ const Login = () => {
   const { login } = useAuth();
   const router = useRouter();
 
-  const onSubmit = (values: formSchemaType) => {
-    login(values.email, values.password);
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const onSubmit = async (values: formSchemaType) => {
+    setLoading(true);
+    await login(values.email, values.password);
+    setLoading(false);
   };
 
   const form = useForm<formSchemaType>({
@@ -49,16 +55,17 @@ const Login = () => {
     },
   });
   return (
-    <div className="flex items-center justify-between h-screen px-22 gap-52 border-4 border-red-400">
-      <Snowfall color="red" snowflakeCount={400} />
-      <Card className="w-screen max-w-md">
+    <div className="flex items-center justify-between h-screen px-20 gap-52 border-4 border-red-400">
+      <Snowfall color="pink" snowflakeCount={200} />
+      <Card className="w-full max-w-md">
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <Button
                 variant="outline"
                 className="w-9 h-9 cursor-pointer"
-                type="submit"
+                type="button"
+                onClick={() => router.back()}
               >
                 <ChevronLeft />
               </Button>
@@ -92,8 +99,8 @@ const Login = () => {
                     <FormItem>
                       <FormControl>
                         <Input
-                          type="password"
-                          className="h-11"
+                          type={showPassword ? "text" : "password"}
+                          className="h-11 pr-10"
                           placeholder="Password"
                           {...field}
                         />
@@ -102,6 +109,17 @@ const Login = () => {
                     </FormItem>
                   )}
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-800"
+                >
+                  {showPassword ? (
+                    <EyeOff className="w-4 h-4" />
+                  ) : (
+                    <Eye className="w-4 h-4" />
+                  )}
+                </button>
               </div>
               <Button
                 className="text-[14px] leading-5 text-[#18181B] font-normal"
@@ -111,10 +129,11 @@ const Login = () => {
               </Button>
               <Button
                 variant="outline"
+                disabled={loading}
                 className="w-full h-9 flex items-center justify-center cursor-pointer bg-gray-300 mt-6"
                 type="submit"
               >
-                Let's Go
+                {loading ? "Logging in..." : "Let's go"}
               </Button>
             </form>
           </Form>
@@ -130,7 +149,10 @@ const Login = () => {
           </Button>
         </CardFooter>
       </Card>
-      <img src="/Frame.png" className="h-screen py-8 w-screen rounded-3xl" />
+      <img
+        src="/Frame.png"
+        className="hidden md:block h-screen w-1/2 py-8 rounded-3xl"
+      />
     </div>
   );
 };
