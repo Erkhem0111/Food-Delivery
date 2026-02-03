@@ -20,7 +20,6 @@ type AuthContextType = {
 
 type User = {
   _id: string;
-  name: string;
   email: string;
   role: string;
 };
@@ -38,20 +37,15 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
 
   const login = async (email: string, password: string) => {
     try {
-      const { data } = await api.post<LoginResponse>("/Login", {
+      const { data } = await api.post<LoginResponse>("/auth/login", {
         email,
         password,
       });
-      const { user, accessToken } = data;
 
-      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("accessToken", data.accessToken);
 
-      setUser(user);
-      if (user.role === "admin") {
-        router.push("/admin");
-      } else {
-        router.push("/");
-      }
+      setUser(data.user);
+      router.push(data.user.role === "admin" ? "/admin" : "/");
     } catch (error) {
       toast.error("Invalid email or password");
     }
@@ -64,29 +58,31 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   };
 
   const register = async (email: string, password: string) => {
-    await api.post("/Signup", {
+    await api.post("/auth/register", {
       email,
       password,
     });
     router.push("/Login");
   };
   useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
+    const token = localStorage.getItem("accessToken");
+    if (!token) return;
 
     const fetchMe = async () => {
       try {
         const { data } = await api.get<{ user: User }>("/auth/me", {
           headers: {
-            Authorization: `Bearer ${accessToken}`,
+            Authorization: `Bearer ${token}`,
           },
         });
         setUser(data.user);
       } catch {
         localStorage.removeItem("accessToken");
+        setUser(null);
       }
     };
 
-    if (accessToken) setUser({} as User);
+    fetchMe();
   }, []);
 
   return (

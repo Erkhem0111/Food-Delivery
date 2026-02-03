@@ -48,16 +48,14 @@ export function Header({ totalItems, onCartClick }: HeaderProps) {
               </Button>
             </PopoverTrigger>
             <PopoverContent className="w-fit flex flex-col gap-2 justify-center items-center">
-              <p>Test@gmail.com</p>
-              <Link href="/Login">
-                <Button
-                  variant="destructive"
-                  onClick={logout}
-                  className="h-9 px-3 rounded-full bg-[#F4F4F5] flex items-center justify-center text-[#18181B] cursor-pointer"
-                >
-                  Log out
-                </Button>
-              </Link>
+              <span>{user.email}</span>
+              <Button
+                variant="destructive"
+                onClick={logout}
+                className="h-9 px-3 rounded-full bg-[#F4F4F5] flex items-center justify-center text-[#18181B] cursor-pointer"
+              >
+                Log out
+              </Button>
             </PopoverContent>
           </Popover>
         </div>

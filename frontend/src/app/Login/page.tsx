@@ -32,28 +32,27 @@ const formSchema = z.object({
     .regex(/[@$!%*?&#]/, "Must include at least one special character"),
 });
 
-type formSchemaType = z.infer<typeof formSchema>;
+type formType = z.infer<typeof formSchema>;
 
 const Login = () => {
   const { login } = useAuth();
   const router = useRouter();
-
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  const onSubmit = async (values: formSchemaType) => {
-    setLoading(true);
-    await login(values.email, values.password);
-    setLoading(false);
-  };
-
-  const form = useForm<formSchemaType>({
+  const form = useForm<formType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
+
+  const onSubmit = async (values: formType) => {
+    setLoading(true);
+    await login(values.email, values.password);
+    setLoading(false);
+  };
   return (
     <div className="flex items-center justify-between h-screen px-20 gap-52 border-4 border-red-400">
       <Snowfall color="pink" snowflakeCount={200} />
@@ -98,28 +97,31 @@ const Login = () => {
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <Input
-                          type={showPassword ? "text" : "password"}
-                          className="h-11 pr-10"
-                          placeholder="Password"
-                          {...field}
-                        />
+                        <div className="relative">
+                          <Input
+                            type={showPassword ? "text" : "password"}
+                            className="h-11 pr-10"
+                            placeholder="Password"
+                            {...field}
+                          />
+                          <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            onMouseDown={(e) => e.preventDefault()}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-800"
+                          >
+                            {showPassword ? (
+                              <Eye className="w-4 h-4" />
+                            ) : (
+                              <EyeOff className="w-4 h-4" />
+                            )}
+                          </button>
+                        </div>
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-800"
-                >
-                  {showPassword ? (
-                    <EyeOff className="w-4 h-4" />
-                  ) : (
-                    <Eye className="w-4 h-4" />
-                  )}
-                </button>
               </div>
               <Button
                 className="text-[14px] leading-5 text-[#18181B] font-normal"
@@ -139,7 +141,7 @@ const Login = () => {
           </Form>
         </CardContent>
         <CardFooter className="text-[16px] leading-4 font-normal flex gap-3 justify-center">
-          <p className="text-[#71717A]">Already have an account?</p>
+          <p className="text-[#71717A]">Don't have an account?</p>
           <Button
             variant="link"
             className="text-[#2563EB] cursor-pointer"
