@@ -5,18 +5,14 @@ import Jwt from "jsonwebtoken";
 export const login: RequestHandler = async (req, res) => {
   const { email, password } = req.body;
   const user = await UserModel.findOne({ email });
-
   if (!user) return res.status(404).json({ message: "User not found" });
+  if (user.password !== password)
+    return res.status(401).json({ message: "Wrong password" });
 
-  const { password: userPassword, ...rest } = user.toObject();
-
-  if (userPassword !== password)
-    return res.status(401).json({ message: "Email or password wrong" });
-
-  const accessToken = Jwt.sign({ user: rest }, "Secret");
+  const accessToken = Jwt.sign({ user }, "Secret");
 
   res.status(200).json({
-    user: rest,
+    user,
     accessToken,
   });
 };
