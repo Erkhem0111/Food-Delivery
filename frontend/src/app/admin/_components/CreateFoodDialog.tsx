@@ -26,11 +26,12 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Plus, Upload, X } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+
 import * as z from "zod";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { api } from "@/lib/axios";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const foodFormSchema = z.object({
   name: z.string().min(2, {
@@ -265,7 +266,7 @@ export const CreateFoodDialog = () => {
                         id="file-upload"
                       />
                       {uploadedImageUrl ? (
-                        <div className="relative border-2 border-gray-300 rounded-lg overflow-hidden">
+                        <div className="relative border-2">
                           <Image
                             src={uploadedImageUrl}
                             alt="Uploaded food"

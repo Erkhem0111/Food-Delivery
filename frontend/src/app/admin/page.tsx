@@ -57,32 +57,20 @@ export default function AdminPage() {
 
   return (
     <main className="flex-1 p-8">
-      {categories.map((category) => {
-        const foodsInCategory = foods.filter((food) =>
-          food.categoryIds.some((cat) => cat._id === category._id),
-        );
+      <Card className="grid grid-cols-5 gap-4 p-6">
+        <CreateFoodDialog />
 
-        return (
-          <Card className="mb-8 p-5" key={category._id}>
-            <h2 className="text-[20px] text-[#09090B] font-semibold">
-              {category.name} ({foodsInCategory.length})
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mt-3">
-              <CreateFoodDialog />
-              {foodsInCategory.map((food) => (
-                <FoodCard
-                  key={food._id}
-                  id={food._id}
-                  name={food.name}
-                  price={food.price}
-                  ingredients={food.ingredients}
-                  image={food.image}
-                />
-              ))}
-            </div>
-          </Card>
-        );
-      })}
+        {foods.map((food) => (
+          <FoodCard
+            key={food._id}
+            id={food._id}
+            name={food.name}
+            price={food.price}
+            ingredients={food.ingredients}
+            image={food.image}
+          />
+        ))}
+      </Card>
     </main>
   );
 }
