@@ -8,7 +8,7 @@ export interface FoodItem {
   id: number;
   name: string;
   price: string;
-  description: string;
+  ingredients: string;
   image: string;
 }
 
@@ -44,7 +44,7 @@ export function FoodCard({ item, onClick }: FoodCardProps) {
           </p>
         </div>
         <p className="text-[16px] leading-5 text-[#09090B] font-medium font-sans pt-2">
-          {item.description}
+          {item.ingredients}
         </p>
       </CardContent>
     </Card>

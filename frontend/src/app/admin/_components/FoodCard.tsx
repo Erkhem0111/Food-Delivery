@@ -21,7 +21,7 @@ export function FoodCard({ name, price, ingredients, image }: FoodCardProps) {
             fill
             className="object-cover rounded-lg shadow-lg"
           />
-          <button className="absolute top-3 right-3 p-3 bg-white rounded-full hover:bg-gray-100 shadow-md cursor-pointer">
+          <button className="absolute bottom-3 right-3 p-3 bg-white rounded-full hover:bg-gray-100 shadow-md cursor-pointer">
             <Pencil className="size-4 text-[#EF4444]" />
           </button>
         </div>

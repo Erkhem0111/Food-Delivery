@@ -52,7 +52,7 @@ export function FoodDetailDialog({
                   {food.name}
                 </p>
                 <p className="text-[16px] leading-5 text-[#09090B] font-medium font-sans pt-3">
-                  {food.description}
+                  {food.ingredients}
                 </p>
               </div>
               <div className="flex flex-col gap-6">

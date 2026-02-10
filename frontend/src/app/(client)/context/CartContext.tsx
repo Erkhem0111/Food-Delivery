@@ -7,7 +7,7 @@ type Food = {
   id: number;
   name: string;
   price: string;
-  description: string;
+  ingredients: string;
   image: string;
 };
 
