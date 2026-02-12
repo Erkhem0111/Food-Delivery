@@ -1,6 +1,10 @@
+"use client";
 import { Card, CardContent } from "@/components/ui/card";
-import { Pencil } from "lucide-react";
+import { api } from "@/lib/axios";
 import Image from "next/image";
+import { UpdateFoodDialog } from "./UpdateFoodDialog";
+import { useState } from "react";
+import { id } from "zod/v4/locales";
 
 type FoodCardProps = {
   id: string;
@@ -9,8 +13,21 @@ type FoodCardProps = {
   ingredients: string;
   image: string;
 };
+type Food = {
+  _id: string;
+  name: string;
+  price: number;
+  image: string;
+  ingredients: string;
+  categoryIds: string[];
+};
 
 export function FoodCard({ name, price, ingredients, image }: FoodCardProps) {
+  const [foods, setFoods] = useState<Food[]>([]);
+  const refreshFoods = async () => {
+    const { data } = await api.get("/foods");
+    setFoods(data);
+  };
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow">
       <CardContent>
@@ -21,9 +38,9 @@ export function FoodCard({ name, price, ingredients, image }: FoodCardProps) {
             fill
             className="object-cover rounded-lg shadow-lg"
           />
-          <button className="absolute bottom-3 right-3 p-3 bg-white rounded-full hover:bg-gray-100 shadow-md cursor-pointer">
-            <Pencil className="size-4 text-[#EF4444]" />
-          </button>
+          <UpdateFoodDialog
+            food={{ _id: id, name, price, ingredients, image, categoryIds: [] }}
+          />
         </div>
         <div className="pt-5">
           <div className="flex items-start justify-between mb-2">

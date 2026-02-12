@@ -17,7 +17,7 @@ export function FoodGrid({ title, items, onItemClick }: FoodGridProps) {
 
       <div className="grid grid-cols-3 gap-6">
         {items.map((item) => (
-          <FoodCard key={item.id} item={item} onClick={onItemClick} />
+          <FoodCard key={item.name} item={item} onClick={onItemClick} />
         ))}
       </div>
     </div>

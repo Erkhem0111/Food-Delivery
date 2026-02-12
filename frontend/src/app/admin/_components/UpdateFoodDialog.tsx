@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Plus, Upload, X } from "lucide-react";
+import { Edit, Pencil, Upload, X } from "lucide-react";
 import { useForm } from "react-hook-form";
 
 import * as z from "zod";
@@ -64,21 +64,37 @@ type Category = {
   name: string;
 };
 
-export const CreateFoodDialog = () => {
+type Food = {
+  _id: string;
+  name: string;
+  price: number;
+  image: string;
+  ingredients: string;
+  categoryIds: string[];
+};
+
+interface UpdateFoodDialogProps {
+  food: Food;
+  onUpdate?: () => void;
+}
+
+export const UpdateFoodDialog = ({ food, onUpdate }: UpdateFoodDialogProps) => {
   const [open, setOpen] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
   const [isUploading, setIsUploading] = useState(false);
-  const [uploadedImageUrl, setUploadedImageUrl] = useState<string>("");
+  const [uploadedImageUrl, setUploadedImageUrl] = useState<string>(
+    food.image || "",
+  );
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const form = useForm<FoodFormValues>({
     resolver: zodResolver(foodFormSchema),
     defaultValues: {
-      name: "",
-      price: "",
-      ingredients: "",
-      image: "",
-      categoryId: "",
+      name: food.name || "",
+      price: food.price?.toString() || "",
+      ingredients: food.ingredients || "",
+      image: food.image || "",
+      categoryId: food.categoryIds?.[0] || "",
     },
   });
 
@@ -111,8 +127,6 @@ export const CreateFoodDialog = () => {
       form.setValue("image", blob.url);
     } catch (error) {
       console.error("Upload failed:", error);
-      console.log(error);
-
       alert("Upload failed. Please try again.");
     } finally {
       setIsUploading(false);
@@ -128,26 +142,48 @@ export const CreateFoodDialog = () => {
   };
 
   const onSubmit = async (values: FoodFormValues) => {
-    await api.post("/foods/create", {
-      name: values.name,
-      price: parseFloat(values.price),
-      ingredients: values.ingredients,
-      image: values.image,
-      categoryIds: [values.categoryId],
-    });
+    try {
+      await api.patch(`/foods/${food._id}`, {
+        name: values.name,
+        price: parseFloat(values.price),
+        ingredients: values.ingredients,
+        image: values.image,
+        categoryIds: [values.categoryId],
+      });
 
-    form.reset();
-    setUploadedImageUrl("");
+      setOpen(false);
+      onUpdate?.(); // Callback to refresh parent component
+      alert("Амжилттай шинэчлэгдлээ!");
+    } catch (error) {
+      console.error("Update failed:", error);
+      alert("Шинэчлэхэд алдаа гарлаа!");
+    }
   };
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const { data } = await api.get<Category[]>("/categories");
-      setCategories(data);
+      try {
+        const { data } = await api.get<Category[]>("/categories");
+        setCategories(data);
+      } catch (error) {
+        console.error("Categories fetch failed:", error);
+      }
     };
 
     fetchCategories();
   }, []);
+
+  // Reset form when food data changes
+  useEffect(() => {
+    form.reset({
+      name: food.name || "",
+      price: food.price?.toString() || "",
+      ingredients: food.ingredients || "",
+      image: food.image || "",
+      categoryId: food.categoryIds?.[0] || "",
+    });
+    setUploadedImageUrl(food.image || "");
+  }, [food, form]);
 
   return (
     <Dialog
@@ -155,23 +191,28 @@ export const CreateFoodDialog = () => {
       onOpenChange={(open) => {
         if (isUploading) return;
         setOpen(open);
+        if (!open) {
+          // Reset form when dialog closes
+          form.reset({
+            name: food.name || "",
+            price: food.price?.toString() || "",
+            ingredients: food.ingredients || "",
+            image: food.image || "",
+            categoryId: food.categoryIds?.[0] || "",
+          });
+          setUploadedImageUrl(food.image || "");
+        }
       }}
     >
       <DialogTrigger asChild>
-        <Button
-          variant="ghost"
-          className="w-full h-full flex flex-col gap-3 items-center justify-center shadow-lg font-medium text-[16px]"
-        >
-          <div className="shadow-lg p-3 rounded-full">
-            <Plus className="stroke-4" />
-          </div>
-          Add New Dish
+        <Button className="absolute bottom-3 right-3 p-3 bg-white rounded-full hover:bg-gray-100 shadow-md cursor-pointer">
+          <Pencil className="size-4 text-[#EF4444]" />
         </Button>
       </DialogTrigger>
 
       <DialogContent className="max-w-150">
         <DialogHeader>
-          <DialogTitle>Add new Dish</DialogTitle>
+          <DialogTitle>Edit Dish</DialogTitle>
         </DialogHeader>
         <Form {...form}>
           <form
@@ -211,10 +252,7 @@ export const CreateFoodDialog = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Category</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
+                  <Select onValueChange={field.onChange} value={field.value}>
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="Select a category" />
@@ -263,13 +301,13 @@ export const CreateFoodDialog = () => {
                         accept="image/*"
                         onChange={handleFileUpload}
                         className="hidden"
-                        id="file-upload"
+                        id={`file-upload-${food._id}`}
                       />
                       {uploadedImageUrl ? (
                         <div className="relative border-2">
                           <Image
                             src={uploadedImageUrl}
-                            alt="Uploaded food"
+                            alt="Food image"
                             width={400}
                             height={300}
                             className="w-full h-48 object-cover"
@@ -284,7 +322,7 @@ export const CreateFoodDialog = () => {
                         </div>
                       ) : (
                         <label
-                          htmlFor="file-upload"
+                          htmlFor={`file-upload-${food._id}`}
                           className="border-2 border-dashed border-gray-300 rounded-lg p-12 flex flex-col items-center justify-center hover:border-gray-400 transition-colors cursor-pointer"
                         >
                           <Upload className="w-8 h-8 text-gray-400 mb-3" />
@@ -301,13 +339,21 @@ export const CreateFoodDialog = () => {
               )}
             />
 
-            <div className="flex justify-end">
+            <div className="flex justify-end gap-2">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setOpen(false)}
+                disabled={isUploading}
+              >
+                Cancel
+              </Button>
               <Button
                 type="submit"
                 disabled={isUploading}
                 className="cursor-pointer"
               >
-                Add Dish
+                Update Dish
               </Button>
             </div>
           </form>

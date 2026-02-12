@@ -1,12 +1,8 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { HandPlatter } from "lucide-react";
-import { useRouter } from "next/navigation";
 
 export function EmptyCart() {
-  const router = useRouter();
   return (
     <>
       <div className="bg-[#F4F4F5] rounded-lg">

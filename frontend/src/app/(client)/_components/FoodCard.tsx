@@ -4,12 +4,18 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Plus } from "lucide-react";
 
+type Category = {
+  _id: string;
+  name: string;
+};
+
 export interface FoodItem {
-  id: number;
+  _id: string;
   name: string;
   price: string;
-  ingredients: string;
   image: string;
+  ingredients: string;
+  categoryIds: Category;
 }
 
 interface FoodCardProps {

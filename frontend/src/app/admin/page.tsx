@@ -12,10 +12,12 @@ type Food = {
   price: number;
   image: string;
   ingredients: string;
-  categoryIds: {
-    _id: string;
-    name: string;
-  }[];
+  categoryId:
+    | {
+        _id: string;
+        name: string;
+      }
+    | string;
 };
 
 type Category = {
@@ -33,13 +35,15 @@ export default function AdminPage() {
       setFoods(data);
 
       const catMap = new Map<string, string>();
-      data.forEach((food) =>
-        food.categoryIds.forEach((cat) => {
-          if (!catMap.has(cat._id)) {
-            catMap.set(cat._id, cat.name);
-          }
-        }),
-      );
+      data.forEach((food) => {
+        const cat = food.categoryId as any;
+        if (!cat) return;
+        const id = typeof cat === "string" ? cat : cat._id;
+        const name = typeof cat === "string" ? cat : cat.name;
+        if (!catMap.has(id)) {
+          catMap.set(id, name);
+        }
+      });
 
       const uniqueCategories = Array.from(catMap.entries()).map(
         ([id, name]) => ({

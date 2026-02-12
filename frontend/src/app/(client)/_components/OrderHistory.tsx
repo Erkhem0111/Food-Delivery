@@ -16,9 +16,6 @@ interface CartContentProps {
 
 export function OrderHistory({
   cartItems,
-  subtotal,
-  shipping,
-  total,
   onUpdateQuantity,
   onRemoveFromCart,
 }: CartContentProps) {

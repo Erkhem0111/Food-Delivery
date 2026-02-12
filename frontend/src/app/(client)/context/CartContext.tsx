@@ -4,7 +4,7 @@ import { createContext, useContext, useState, ReactNode } from "react";
 import { CartDrawer } from "../_components/CartDrawer";
 
 type Food = {
-  id: number;
+  id: number | string;
   name: string;
   price: string;
   ingredients: string;
@@ -18,8 +18,8 @@ export type CartItemType = Food & {
 interface CartContextType {
   cartItems: CartItemType[];
   addToCart: (item: Food) => void;
-  removeFromCart: (id: number) => void;
-  updateQuantity: (id: number, quantity: number) => void;
+  removeFromCart: (id: number | string) => void;
+  updateQuantity: (id: number | string, quantity: number) => void;
   getTotalItems: () => number;
   getTotalPrice: () => number;
   isCartOpen: boolean;
@@ -44,11 +44,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
     });
   };
 
-  const removeFromCart = (id: number) => {
+  const removeFromCart = (id: number | string) => {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
-  const updateQuantity = (id: number, quantity: number) => {
+  const updateQuantity = (id: number | string, quantity: number) => {
     if (quantity <= 0) {
       removeFromCart(id);
       return;

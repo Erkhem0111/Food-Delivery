@@ -21,7 +21,7 @@ export const CartItem = ({ item, onUpdateQuantity }: CartItemProps) => {
               {item.name}
             </p>
             <p className="text-[14px] leading-5 text-[#09090B] font-medium font-sans">
-              {item.description}
+              {item.ingredients}
             </p>
           </div>
           <div className="flex justify-between">
@@ -29,7 +29,9 @@ export const CartItem = ({ item, onUpdateQuantity }: CartItemProps) => {
               <Button
                 variant="outline"
                 className="w-9 h-9 rounded-full bg-[#F4F4F5] text-[#18181B] flex items-center justify-center cursor-pointer"
-                onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}
+                onClick={() =>
+                  onUpdateQuantity(Number(item.id), Number(item.quantity) - 1)
+                }
               >
                 <Minus />
               </Button>
@@ -39,7 +41,9 @@ export const CartItem = ({ item, onUpdateQuantity }: CartItemProps) => {
               <Button
                 variant="outline"
                 className="w-9 h-9 rounded-full bg-[#F4F4F5] text-[#18181B] flex items-center justify-center cursor-pointer"
-                onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
+                onClick={() =>
+                  onUpdateQuantity(Number(item.id), Number(item.quantity) + 1)
+                }
               >
                 <Plus />
               </Button>
