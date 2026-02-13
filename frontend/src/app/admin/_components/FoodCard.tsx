@@ -38,9 +38,10 @@ export function FoodCard({ name, price, ingredients, image }: FoodCardProps) {
             fill
             className="object-cover rounded-lg shadow-lg"
           />
-          <UpdateFoodDialog
+          {/* <UpdateFoodDialog
             food={{ _id: id, name, price, ingredients, image, categoryIds: [] }}
-          />
+          /> */}
+          <div></div>
         </div>
         <div className="pt-5">
           <div className="flex items-start justify-between mb-2">
