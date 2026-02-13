@@ -7,5 +7,5 @@ export const createCategory: RequestHandler = async (req, res) => {
     name: body.name,
   });
 
-  res.status(201).json(category);
+  res.status(208).json(category);
 };
